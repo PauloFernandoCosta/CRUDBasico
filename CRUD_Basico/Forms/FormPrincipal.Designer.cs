@@ -28,16 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DgvAlunos = new System.Windows.Forms.DataGridView();
             this.BtnCadastrar = new System.Windows.Forms.Button();
             this.CkbAtivo = new System.Windows.Forms.CheckBox();
             this.DtpDtNascimento = new System.Windows.Forms.DateTimePicker();
             this.TxbNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.DgvAlunos = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TsbNovo = new System.Windows.Forms.ToolStripButton();
+            this.TsbSalvar = new System.Windows.Forms.ToolStripButton();
+            this.TsbEditar = new System.Windows.Forms.ToolStripButton();
+            this.TsbExcluir = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAlunos)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -45,6 +53,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.DgvAlunos);
             this.groupBox1.Controls.Add(this.BtnCadastrar);
             this.groupBox1.Controls.Add(this.CkbAtivo);
@@ -53,12 +62,31 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(627, 628);
+            this.groupBox1.Size = new System.Drawing.Size(627, 610);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro de Aluno";
+            // 
+            // DgvAlunos
+            // 
+            this.DgvAlunos.AllowUserToAddRows = false;
+            this.DgvAlunos.AllowUserToDeleteRows = false;
+            this.DgvAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DgvAlunos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvAlunos.Location = new System.Drawing.Point(21, 310);
+            this.DgvAlunos.MultiSelect = false;
+            this.DgvAlunos.Name = "DgvAlunos";
+            this.DgvAlunos.ReadOnly = true;
+            this.DgvAlunos.RowHeadersVisible = false;
+            this.DgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvAlunos.Size = new System.Drawing.Size(578, 274);
+            this.DgvAlunos.TabIndex = 5;
+            this.DgvAlunos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAlunos_CellClick);
             // 
             // BtnCadastrar
             // 
@@ -96,6 +124,7 @@
             this.TxbNome.Name = "TxbNome";
             this.TxbNome.Size = new System.Drawing.Size(578, 26);
             this.TxbNome.TabIndex = 1;
+            this.TxbNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxbNome_KeyDown);
             // 
             // label2
             // 
@@ -117,19 +146,73 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
-            // DgvAlunos
+            // button1
             // 
-            this.DgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAlunos.Location = new System.Drawing.Point(21, 310);
-            this.DgvAlunos.Name = "DgvAlunos";
-            this.DgvAlunos.Size = new System.Drawing.Size(578, 292);
-            this.DgvAlunos.TabIndex = 5;
+            this.button1.Location = new System.Drawing.Point(21, 235);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 41);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsbNovo,
+            this.TsbSalvar,
+            this.TsbEditar,
+            this.TsbExcluir});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(659, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // TsbNovo
+            // 
+            this.TsbNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.TsbNovo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TsbNovo.Image = ((System.Drawing.Image)(resources.GetObject("TsbNovo.Image")));
+            this.TsbNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbNovo.Name = "TsbNovo";
+            this.TsbNovo.Size = new System.Drawing.Size(40, 22);
+            this.TsbNovo.Text = "Novo";
+            this.TsbNovo.Click += new System.EventHandler(this.TsbNovo_Click);
+            // 
+            // TsbSalvar
+            // 
+            this.TsbSalvar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.TsbSalvar.Image = ((System.Drawing.Image)(resources.GetObject("TsbSalvar.Image")));
+            this.TsbSalvar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbSalvar.Name = "TsbSalvar";
+            this.TsbSalvar.Size = new System.Drawing.Size(42, 22);
+            this.TsbSalvar.Text = "Salvar";
+            // 
+            // TsbEditar
+            // 
+            this.TsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.TsbEditar.Image = ((System.Drawing.Image)(resources.GetObject("TsbEditar.Image")));
+            this.TsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbEditar.Name = "TsbEditar";
+            this.TsbEditar.Size = new System.Drawing.Size(41, 22);
+            this.TsbEditar.Text = "Editar";
+            this.TsbEditar.Click += new System.EventHandler(this.TsbEditar_Click);
+            // 
+            // TsbExcluir
+            // 
+            this.TsbExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.TsbExcluir.Image = ((System.Drawing.Image)(resources.GetObject("TsbExcluir.Image")));
+            this.TsbExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbExcluir.Name = "TsbExcluir";
+            this.TsbExcluir.Size = new System.Drawing.Size(46, 22);
+            this.TsbExcluir.Text = "Excluir";
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 657);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormPrincipal";
             this.Text = "Sistema N12";
@@ -137,7 +220,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAlunos)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -151,6 +237,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DgvAlunos;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton TsbNovo;
+        private System.Windows.Forms.ToolStripButton TsbSalvar;
+        private System.Windows.Forms.ToolStripButton TsbEditar;
+        private System.Windows.Forms.ToolStripButton TsbExcluir;
     }
 }
 
