@@ -14,6 +14,7 @@ namespace CRUD_Basico
     public partial class FormPrincipal : Form
     {
         private List<Aluno> _alunos;
+        private Aluno _alunoSelecionado;
         public FormPrincipal()
         {
             InitializeComponent();
@@ -36,26 +37,19 @@ namespace CRUD_Basico
         private void CarregaDgvAluno()
         {
             DgvAlunos.Rows.Clear();
+
+            _alunos = _alunos.OrderBy(a => a.Nome).ToList();
+
             foreach (Aluno aluno in _alunos)
             {
-                DgvAlunos.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy");
+                DgvAlunos.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy"));
             }
 
         }
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Aluno novoAluno = new Aluno(TxbNome.Text, DtpDtNascimento.Value, CkbAtivo.Checked);
-
-                novoAluno.Cadastrar();
-                MessageBox.Show($"Aluno cadastrado com sucesso:\n {novoAluno.Nome}\nId inserido pelo banco: {novoAluno.Id}");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
@@ -81,11 +75,11 @@ namespace CRUD_Basico
             if (e.RowIndex < 0)
                 return;
 
-            Aluno alunoselecionado = _alunos.Find(a => a.Id == (int)DgvAlunos.Rows[e.RowIndex].Cells["Id"].Value);
+            _alunoSelecionado = _alunos.Find(a => a.Id == (int)DgvAlunos.Rows[e.RowIndex].Cells["Id"].Value);
 
-            TxbNome.Text = alunoselecionado.Nome;
-            DtpDtNascimento.Value = alunoselecionado.DtNascimento;
-            CkbAtivo.Checked = alunoselecionado.Ativo;
+            TxbNome.Text = _alunoSelecionado.Nome;
+            DtpDtNascimento.Value = _alunoSelecionado.DtNascimento;
+            CkbAtivo.Checked = _alunoSelecionado.Ativo;
 
             ConfiguraBotoesECampos(3);
             
@@ -105,6 +99,8 @@ namespace CRUD_Basico
                 CkbAtivo.Enabled = true;
                 CkbAtivo.Checked = true;
                 DtpDtNascimento.Enabled = true;
+
+                _alunoSelecionado = null;
             }
             else if (estilo == 2)
             {
@@ -153,6 +149,58 @@ namespace CRUD_Basico
         private void TsbEditar_Click(object sender, EventArgs e)
         {
             ConfiguraBotoesECampos(4);
+        }
+
+        private void TsbSalvar_Click(object sender, EventArgs e)
+        {
+            //Cadastrar alguém novo
+            if (_alunoSelecionado == null)
+            {
+                try
+                {
+                    Aluno novoAluno = new Aluno(TxbNome.Text, DtpDtNascimento.Value, CkbAtivo.Checked);
+
+                    novoAluno.Cadastrar();
+                    _alunos.Add(novoAluno);
+                    CarregaDgvAluno();
+                    ConfiguraBotoesECampos(1);
+                    MessageBox.Show($"Aluno cadastrado com sucesso:\n {novoAluno.Nome}\nId inserido pelo banco: {novoAluno.Id}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                //Remover o aluno selecionado da lista de alunos
+                _alunos.Remove(_alunoSelecionado);
+
+                //Alterar um aluno existente
+                _alunoSelecionado.Nome = TxbNome.Text;
+                _alunoSelecionado.DtNascimento = DtpDtNascimento.Value;
+                _alunoSelecionado.Ativo = CkbAtivo.Checked;
+
+                try
+                {
+                    string retornoBD = _alunoSelecionado.Atualizar();
+                    _alunos.Add(_alunoSelecionado);
+                    CarregaDgvAluno();
+                    ConfiguraBotoesECampos(1);
+                    MessageBox.Show(retornoBD);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+            }
+
+        }
+
+        private void TsbExcluir_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

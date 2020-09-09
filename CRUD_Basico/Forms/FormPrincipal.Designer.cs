@@ -31,13 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DgvAlunos = new System.Windows.Forms.DataGridView();
-            this.BtnCadastrar = new System.Windows.Forms.Button();
             this.CkbAtivo = new System.Windows.Forms.CheckBox();
             this.DtpDtNascimento = new System.Windows.Forms.DateTimePicker();
             this.TxbNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TsbNovo = new System.Windows.Forms.ToolStripButton();
             this.TsbSalvar = new System.Windows.Forms.ToolStripButton();
@@ -53,9 +51,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.DgvAlunos);
-            this.groupBox1.Controls.Add(this.BtnCadastrar);
             this.groupBox1.Controls.Add(this.CkbAtivo);
             this.groupBox1.Controls.Add(this.DtpDtNascimento);
             this.groupBox1.Controls.Add(this.TxbNome);
@@ -78,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvAlunos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAlunos.Location = new System.Drawing.Point(21, 310);
+            this.DgvAlunos.Location = new System.Drawing.Point(21, 252);
             this.DgvAlunos.MultiSelect = false;
             this.DgvAlunos.Name = "DgvAlunos";
             this.DgvAlunos.ReadOnly = true;
@@ -87,16 +83,6 @@
             this.DgvAlunos.Size = new System.Drawing.Size(578, 274);
             this.DgvAlunos.TabIndex = 5;
             this.DgvAlunos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAlunos_CellClick);
-            // 
-            // BtnCadastrar
-            // 
-            this.BtnCadastrar.Location = new System.Drawing.Point(231, 235);
-            this.BtnCadastrar.Name = "BtnCadastrar";
-            this.BtnCadastrar.Size = new System.Drawing.Size(166, 41);
-            this.BtnCadastrar.TabIndex = 4;
-            this.BtnCadastrar.Text = "Cadastrar";
-            this.BtnCadastrar.UseVisualStyleBackColor = true;
-            this.BtnCadastrar.Click += new System.EventHandler(this.BtnCadastrar_Click);
             // 
             // CkbAtivo
             // 
@@ -146,15 +132,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(21, 235);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 41);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -187,6 +164,7 @@
             this.TsbSalvar.Name = "TsbSalvar";
             this.TsbSalvar.Size = new System.Drawing.Size(42, 22);
             this.TsbSalvar.Text = "Salvar";
+            this.TsbSalvar.Click += new System.EventHandler(this.TsbSalvar_Click);
             // 
             // TsbEditar
             // 
@@ -206,6 +184,7 @@
             this.TsbExcluir.Name = "TsbExcluir";
             this.TsbExcluir.Size = new System.Drawing.Size(46, 22);
             this.TsbExcluir.Text = "Excluir";
+            this.TsbExcluir.Click += new System.EventHandler(this.TsbExcluir_Click);
             // 
             // FormPrincipal
             // 
@@ -230,14 +209,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button BtnCadastrar;
         private System.Windows.Forms.CheckBox CkbAtivo;
         private System.Windows.Forms.DateTimePicker DtpDtNascimento;
         private System.Windows.Forms.TextBox TxbNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DgvAlunos;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton TsbNovo;
         private System.Windows.Forms.ToolStripButton TsbSalvar;
