@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gmail.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -84,6 +87,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="gmail.ico" />
     <Content Include="Procedures\SP_AtualizaAluno.sql" />
     <Content Include="Procedures\SP_ExcluirAluno.sql" />
     <Content Include="Procedures\SP_InsereAluno.sql" />

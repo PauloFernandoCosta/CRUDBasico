@@ -200,7 +200,19 @@ namespace CRUD_Basico
 
         private void TsbExcluir_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string retornoBD = _alunoSelecionado.Atualizar();
+                _alunos.Remove(_alunoSelecionado);
+                CarregaDgvAluno();
+                ConfiguraBotoesECampos(1);
+                MessageBox.Show(retornoBD);
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
